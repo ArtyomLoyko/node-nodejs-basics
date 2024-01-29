@@ -1,9 +1,8 @@
 const parseEnv = () => {
-    for (const prop in process.env) {
-        if (prop.includes('RSS_')) {
-            console.log(`${prop}=${process.env[prop]}`)
-        }
-    }
+    const result = Object.entries(process.env)
+        .reduce((acc, [key, value]) => key.includes('RSS_') ? acc.concat(`${key}=${value}`) : acc, [])
+        .join('; ')
+    console.log(result)
 };
 
 parseEnv();
