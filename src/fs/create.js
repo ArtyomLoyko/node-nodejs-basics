@@ -1,5 +1,11 @@
+import fs from 'fs'
+
 const create = async () => {
-    // Write your code here 
+    const filePath = new URL('files/fresh.txt', import.meta.url)
+
+    await fs.promises.writeFile(filePath, 'I am fresh and young', { flag: 'wx' }).catch(err => {
+        throw new Error('FS operation failed') 
+    })
 };
 
 await create();
